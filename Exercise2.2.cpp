@@ -1,21 +1,36 @@
 // Program to illustrate the working of objects and class in C++ Programming
 #include <iostream>
 #include <string> // For string class
+// #include "Point.h"
+using std::cout;
+using std::cin;
 using namespace std;
+
+/////////////////////////////////// Header File //////////////////////////////////////
+
+// #ifndef POINT_H
+// #define POINT_H
+// #include <string>
 class Point
 {
     private:
         double m_x;
         double m_y;
     public:
-        Point();   // This is the constructor declaration
-        ~Point();  // This is the destructor declaration
+        Point(std::string); // This is the constructor declaration
+        ~Point(); // This is the destructor declaration
         double GetX();
         double GetY(); 
         double SetX(double x);
         double SetY(double y);
-        std::string ToString();     
+        std::string ToString(double x, double y);     
 };
+
+// #endif
+
+///////////////////////// Point.cpp File ///////////////////////////////////
+
+
 // Member functions definitions including constructor and destructor
 // Constructor
 Point::Point(void) 
@@ -50,21 +65,21 @@ double Point::SetY(double y)
   cout << "The Value of y is: " << m_y << endl; 
   return m_y;
 }
-std::string Point::ToString()
+std::string Point::ToString(double x,double y)
 { 
-  //string str[7] = "String";
-  //cout << str << endl;
-  //return str;
+  cout << "Point(" << x << "," << y << ")" << endl;
 }
 
+/////////////////////////// Main.cpp File ////////////////////////
 int main()
 {
+  
   Point Object;
   double badx,bady; char bads;
   badx = Object.SetX(Object.GetX());
   bady = Object.SetY(Object.GetY());
-  //bads = Object.ToString();
-  //Object.ToString();
+  Object.ToString(badx,bady);
+ 
   cout << "You entered x = " << badx << " & y = " << bady << bads << endl;
   return 0;
 }
