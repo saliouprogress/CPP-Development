@@ -28,6 +28,8 @@ private:
 #ifndef LINE_H
 #define LINE_H
 #include <iostream>
+#include <sstream>
+#include <string>
 //#include "point.h"
 
 using namespace std;
@@ -39,7 +41,7 @@ public:
     Line(Point P1, Point P2);
     double GetA();
     double GetB();
-    std::string  ToString();
+    string ToString(double A, double B);
 private:
     Point p1, p2;
     double A,B;
@@ -52,6 +54,8 @@ private:
 //#include "line.h"
 //#include "point.h"
 #include <iostream>
+#include <string>
+#include <sstream>
 #include <cmath>
 
 //using namespace std;
@@ -94,6 +98,18 @@ double Line::GetA()
 double Line::GetB()
 {
     return B;
+}
+
+std::string Line::ToString(double A, double B)
+{
+    cout << "works" << endl;
+    std::string out_string;
+    std:stringstream buffer;
+    
+    cout << "Resulting line: " << "y = " << A << "x" << " + " << B << endl;
+    out_string = buffer.str();
+    cout << out_string;
+    return out_string;
 }
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -142,11 +158,13 @@ double Point::GetY()
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-//#include <iostream>
+#include <iostream>
+#include <sstream>
+#include <string>
 //#include "point.h"
 //#include "line.h"
 
-//using namespace std;
+using namespace std;
 
 int main()
 {
@@ -159,7 +177,8 @@ int main()
     cout<<endl;
 
     Line THE_Line(Point1_Object, Point2_Object);
-    cout<< "Resulting line: " << "y = " << THE_Line.GetA() << "x" << " + " << THE_Line.GetB() << endl;
+    //cout<< "Resulting line: " << "y = " << THE_Line.GetA() << "x" << " + " << THE_Line.GetB() << endl;
+    THE_Line.ToString(5,6);
 
 
     cout << endl << endl << endl << "END!!!" << endl;
