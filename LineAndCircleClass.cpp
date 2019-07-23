@@ -178,7 +178,7 @@ int main()
 
     Line THE_Line(Point1_Object, Point2_Object);
     //cout<< "Resulting line: " << "y = " << THE_Line.GetA() << "x" << " + " << THE_Line.GetB() << endl;
-    THE_Line.ToString(5,6);
+    THE_Line.ToString(THE_Line.GetA(), THE_Line.GetB());
 
 
     cout << endl << endl << endl << "END!!!" << endl;
