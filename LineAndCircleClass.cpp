@@ -1,4 +1,4 @@
-#ifndef POINT_H
+#ifndef POINT_H             ///////////////  http://www.cplusplus.com/forum/general/124555/
 #define POINT_H
 #include <iostream>
 
@@ -28,7 +28,7 @@ private:
 #ifndef LINE_H
 #define LINE_H
 #include <iostream>
-#include "point.h"
+//#include "point.h"
 
 using namespace std;
 
@@ -39,6 +39,7 @@ public:
     Line(Point P1, Point P2);
     double GetA();
     double GetB();
+    std::string  ToString();
 private:
     Point p1, p2;
     double A,B;
@@ -48,12 +49,12 @@ private:
 
 /////////////////////////////////////////////////////////////////////////////
 
-#include "line.h"
-#include "point.h"
+//#include "line.h"
+//#include "point.h"
 #include <iostream>
 #include <cmath>
 
-using namespace std;
+//using namespace std;
 
 //Default constructor
 Line::Line():A(0),B(0)
@@ -74,11 +75,15 @@ Line::Line(Point P1, Point P2)
 
     //derived from slope(m) intercept(b) form
     double m,b;
+    
     m = (y2 - y1)/(x2-x1);
-    b = y1 - ((y2-y1))/(x2-x1)*x1;
+    b = y1 - m*x1;
 
-    B = -1/b;
-    A = -B*m;
+    //B = -1/b;
+    //A = -B*m;
+    A = m;
+    B = b;
+    //cout << A << " " << B << endl;
 }
 
 //ACCESSORS
@@ -92,8 +97,8 @@ double Line::GetB()
 }
 ///////////////////////////////////////////////////////////////////////////////////
 
-#include "point.h"
-#include <iostream>
+//#include "point.h"
+//#include <iostream>
 
 using namespace std;
               //INITIALIZES
@@ -137,27 +142,27 @@ double Point::GetY()
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-#include <iostream>
-#include "point.h"
-#include "line.h"
+//#include <iostream>
+//#include "point.h"
+//#include "line.h"
 
-using namespace std;
+//using namespace std;
 
 int main()
 {
 
     Point Point1_Object(5,5);
-    cout<<"Point1 (x,y) is: ("<<Point1_Object.GetX()<<","<<Point1_Object.GetY()<<")"<<endl;
+    cout << "Point1 (x,y) is: (" << Point1_Object.GetX() << "," << Point1_Object.GetY() << ")" << endl;
     cout<<endl;
-    Point Point2_Object(4,4);
-    cout<<"Point2 (x,y) is: ("<<Point2_Object.GetX()<<","<<Point2_Object.GetY()<<")"<<endl;
+    Point Point2_Object(6,4);
+    cout<<"Point2 (x,y) is: (" << Point2_Object.GetX() << "," << Point2_Object.GetY() << ")" << endl;
     cout<<endl;
 
     Line THE_Line(Point1_Object, Point2_Object);
-//    cout<<"Resulting line: "<<MyLine.GetA()<<"x"<<"+"<<MyLine.GetB()<<"y"<<" = 0"<<endl;
+    cout<< "Resulting line: " << "y = " << THE_Line.GetA() << "x" << " + " << THE_Line.GetB() << endl;
 
 
-    cout <<endl<<endl<<endl<< "END!!!" << endl;
+    cout << endl << endl << endl << "END!!!" << endl;
     return 0;
 }
-Edit & Run
+//Edit & Run
