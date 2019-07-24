@@ -41,7 +41,7 @@ class Line
 public:
     Line();
     Line(Point P1, Point P2); 
-    Line(Line &sam);
+    Line(const & Obj);
    
     double GetA();
     double GetB();
@@ -207,7 +207,7 @@ Line::Line(Point P1, Point P2)
     cout <<  "Constructor with start and end point called"  << endl;
 }
 
-Line::Line(Line &sam)
+Line::Line(const Point& Obj)
 {
     cout <<  " Copy Constructor called"  << endl;
 }
@@ -300,8 +300,10 @@ int main()
     //cout<< "Resulting line: " << "y = " << THE_Line.GetA() << "x" << " + " << THE_Line.GetB() << endl;
     THE_Line.ToString(THE_Line.GetA(), THE_Line.GetB());
     
-    //ine::Line(Line& P1 , Line& P2)
-    //Line THE(Line& A, Line& B);
+    Point Obj;
+    Obj = Point1_Object;
+    Line(Obj);
+    //Line THE_Line();
     
     //double radius = 5;
     Circle THE_Circle(Point1_Object, Point2_Object);
