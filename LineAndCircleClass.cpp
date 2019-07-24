@@ -11,6 +11,7 @@ public:
     //Default constructor
     Point();
     Point(double new_x, double new_y);
+    
     /*******Member Fucntions*******/
     //Accessors
     double GetX();
@@ -39,7 +40,9 @@ class Line
 {
 public:
     Line();
-    Line(Point P1, Point P2);
+    Line(Point P1, Point P2); 
+    Line(Line& A , Line& B);
+   
     double GetA();
     double GetB();
     string ToString(double A, double B);
@@ -201,9 +204,13 @@ Line::Line(Point P1, Point P2)
     //A = -B*m;
     A = m;
     B = b;
-    //cout << A << " " << B << endl;
+    cout <<  "Constructor with start and end point called"  << endl;
 }
 
+Line::Line(Line& A , Line& B)
+{
+    cout <<  " Copy Constructor called"  << endl;
+}
 //ACCESSORS
 double Line::GetA()
 {
@@ -293,6 +300,8 @@ int main()
     //cout<< "Resulting line: " << "y = " << THE_Line.GetA() << "x" << " + " << THE_Line.GetB() << endl;
     THE_Line.ToString(THE_Line.GetA(), THE_Line.GetB());
     
+    //ine::Line(Line& P1 , Line& P2)
+    Line THE(Line& A, Line& B);
     //double radius = 5;
     Circle THE_Circle(Point1_Object, Point2_Object);
     //THE_Circle.ToString(THE_Circle.GetXC(),, );
