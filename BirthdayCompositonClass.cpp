@@ -6,96 +6,52 @@ using namespace std;
 class Birthday{
 
 public:
-    Birthday()
-    {
-      month = 0;
-      day = 0;
-      year = 0;
-      cout << "Default onstructor." << endl;
-    }
-    Birthday(int cmonth, int cday, int cyear)
-    {
-      month = cmonth;
-      day = cday;
-      year = cyear;
-      cout << "Birthday constructor with Start and End Point." << endl;
-    }
-    Birthday(const int& old)
-    {
-      //month = old.month;
-      //day = old.day;
-      //year = old.year;
-      cout << "Birtthday Copy Constructor." << endl;
-    }
-    ~Birthday()
-    {
-      cout << "Birtthday Destructor." << endl;
-    }
-    void X(int x)
-    {
-      month = x;
-    }
-    void Y(int y)
-    {
-      day = y;
-    }
-    void Z(int z)
-    {
-      year = z;
-    }
-    int X()
-    {
-      return month;
-    }
-    int Y()
-    {
-      return day;
-    }
-    int Z()
-    {
-      return year;
-    }
+    Birthday() {
+      month = 0;   day = 0;   year = 0;
+      cout << "Birthday Default Constructor." << endl; }
     
-    void ToString(){
-        cout<< month <<"/" <<day <<"/" << year <<endl;
-
-    }
+    Birthday(int xmonth, int yday, int zyear) {
+      month = xmonth;   day = yday;   year = zyear;
+      cout << "Birthday constructor with Start and End Point." << endl; }
+    
+    Birthday(const Birthday& old) {
+      month = old.month;   day = old.day;    year = old.year;
+      cout << "Birtthday Copy Constructor." << endl;}
+    
+    ~Birthday() {  cout << "Birtthday Destructor." << endl; }
+    
+    void X(int x) { month = x; }
+    
+    void Y(int y) { day = y; }
+    
+    void Z(int z){ year = z; }
+    
+    int X() {  return month; }
+    
+    int Y() { return day; }
+    
+    int Z() { return year; }
+    
+    void ToString(){ cout<< month <<"/" <<day <<"/" << year <<endl; }
+    
 private:
-    int month;
-    int day;
-    int year;
-
+    int month; int day; int year;
 };
 
 class People{
-
 public:
     People(string cname, Birthday cdateOfBirth) :name(cname), dateOfBirth(cdateOfBirth)
-    {
-      cout << "People Constructor with Start Point." << endl;
-    }
+    { cout << "People Constructor with Start Point." << endl; }
     
-    //People(const Birthday& cdateOfBirth)
-    //{
-    //  cout << "Copy constructor with Start Point." << endl;
-    //}
-    ~People()
-    {
-      cout << "People Destructor." << endl;
-    }
-    void ToString(){
-        cout<<name <<" was born on: ";
-        dateOfBirth.ToString();
-    }
-
+    ~People() { cout << "People Destructor." << endl; }
+    
+    void ToString() { cout<<name <<" was born on: "; dateOfBirth.ToString(); }
+    
 private:
-    string name;
-    Birthday dateOfBirth;
-
+    string name;   Birthday dateOfBirth;
 };
 
 int main() {
-    
     int x,y,z;
     cin >> x; cin >> y; cin >> z;
     
