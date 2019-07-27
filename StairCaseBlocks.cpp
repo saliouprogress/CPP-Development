@@ -8,11 +8,11 @@ int main()
 	cin >> N;
 	int remainingBlocks = N;
  
-	while (totalBlocks <= remainingBlocks)
+	for (totalBlocks = 1; totalBlocks <= remainingBlocks; totalBlocks++)
 	{
           	remainingBlocks = remainingBlocks - totalBlocks; 
 		cout << totalBlocks << ", " << remainingBlocks << endl;
-        	totalBlocks++; 
+        	//totalBlocks++; 
 	}  	
 	return 0;
 }
