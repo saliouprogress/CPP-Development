@@ -1,5 +1,4 @@
 #include <iostream>
-
 using namespace std;
 
 int main() 
@@ -8,11 +7,11 @@ int main()
 	cin >> N;
 	int remainingBlocks = N;
  
-	for (totalBlocks = 1; totalBlocks <= remainingBlocks; totalBlocks++)
+	while ( totalBlocks <= remainingBlocks)
 	{
           	remainingBlocks = remainingBlocks - totalBlocks; 
 		cout << totalBlocks << ", " << remainingBlocks << endl;
-        	//totalBlocks++; 
+        	totalBlocks++; 
 	}  	
 	return 0;
 }
