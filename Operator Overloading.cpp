@@ -7,7 +7,6 @@ class Distance {
    private:
       int feet;             // 0 to infinite
       int inches;           // 0 to 12
-      
    public:
       // required constructors
       Distance() {
@@ -18,12 +17,10 @@ class Distance {
          feet = f;
          inches = i;
       }
-      
       // method to display distance
       void displayDistance() {
          cout << "F: " << feet << " I: " << inches <<endl;
-      }
-        
+      } 
       // overloaded minus (-) operator
       Distance operator- () 
       {
@@ -46,7 +43,7 @@ class Distance {
             box.feet = this->feet * b.feet;
             box.inches = this->inches * b.inches;
           return box;
-         }
+        }
          
          bool operator == (const Distance& d) 
          {
@@ -88,7 +85,6 @@ class Distance {
         }
         //friend ostream& operator << (ostream& os, const Distance& p);
 };
-
 // Part 2.42
 ostream& operator << (ostream& os, const Distance& p) // Send to ostream.
 {
@@ -97,7 +93,6 @@ ostream& operator << (ostream& os, const Distance& p) // Send to ostream.
     os << box.ToString() <<  endl;
     return os ;
 }
-
 
 int main() 
 {
@@ -144,5 +139,8 @@ int main()
      
      if (p == (Distance) 2.0 ) cout<<"Equal!"<<endl;
      else cout<<"Not equal"<<endl;
+ 
+     //Distance* p2 = new Distance(*p)
+     
      return 0;
 }
