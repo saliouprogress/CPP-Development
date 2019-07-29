@@ -73,17 +73,22 @@ class Distance {
         
         std::string ToString()
         {
-          //stringstream os;
-          //os << "Point(" << endl;
-          //cout << os.str();
-          //return os;
+            std::string out_string;
+            std:stringstream buffer;
+    
+            buffer << "Dimentions " << "Feet = " << feet << ", " << " Inches = " << inches << endl;
+            out_string = buffer.str();
+            //cout << out_string;
+            return out_string;
         }
-        //ostream& operator << (ostream& os, const Distance& p);
+        //friend ostream& operator << (ostream& os, const Distance& p);
 };
 
 ostream& operator << (ostream& os, const Distance& p) // Send to ostream.
 {
-    os << "Working "  << endl;
+    //std:string ss;
+    //ss = p.ToString();
+    os << "Working " << endl;
     return os ;
 }
 
@@ -124,10 +129,8 @@ int main()
      cout << "D6: " ; D1.displayDistance();    // display 5
  
      cout << D1.ToString() ;
-     
-     stringstream os;
-     os << "Point(" << endl;
-     cout << os.str();
  
+     cout << D1;
+      
      return 0;
 }
