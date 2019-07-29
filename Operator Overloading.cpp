@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ostream>
+#include <sstream>
 using namespace std;
  
 class Distance {
@@ -22,19 +23,10 @@ class Distance {
       void displayDistance() {
          cout << "F: " << feet << " I: " << inches <<endl;
       }
-      
-      /*// method to display distance
-      void displayDistance(const Distance& d) 
-      {
-          //Distance box;
-          box.feet = d.feet;
-          box.inches = d.inches;
-   
-         cout << "F: " << box.feet << " I: " << box.inches <<endl;
-      }*/
-      
+        
       // overloaded minus (-) operator
-      Distance operator- () {
+      Distance operator- () 
+      {
          feet = -feet;
          inches = -inches;
          return Distance(feet, inches);
@@ -55,7 +47,9 @@ class Distance {
             box.inches = this->inches * b.inches;
           return box;
          }
-         bool operator == (const Distance& d) {
+         
+         bool operator == (const Distance& d) 
+         {
            
           if(feet == d.feet && inches == d.inches) {
               return true;
@@ -68,7 +62,6 @@ class Distance {
             //Distance box;
             feet = d.feet + 5;
             inches = d.inches + 5;
-            
             return *this;
         }
         Distance& operator *= (int factor) // Scale the coordinates & assign.
@@ -77,12 +70,23 @@ class Distance {
             inches *= factor;
             //return ;
         }
+        
+        std::string ToString()
+        {
+          //stringstream os;
+          //os << "Point(" << endl;
+          //cout << os.str();
+          //return os;
+        }
+        //ostream& operator << (ostream& os, const Distance& p);
 };
 
 ostream& operator << (ostream& os, const Distance& p) // Send to ostream.
 {
- 
+    os << "Working "  << endl;
+    return os ;
 }
+
 
 int main() 
 {
@@ -118,6 +122,12 @@ int main()
  
      D1 *= factor;
      cout << "D6: " ; D1.displayDistance();    // display 5
+ 
+     cout << D1.ToString() ;
+     
+     stringstream os;
+     os << "Point(" << endl;
+     cout << os.str();
  
      return 0;
 }
