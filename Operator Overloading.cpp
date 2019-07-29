@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ostream>
 using namespace std;
  
 class Distance {
@@ -54,14 +55,11 @@ class Distance {
             box.inches = this->inches * b.inches;
           return box;
          }
-         bool operator <(const Distance& d) {
-           if(feet < d.feet) {
+         bool operator == (const Distance& d) {
+           
+          if(feet == d.feet && inches == d.inches) {
               return true;
            }
-           if(feet == d.feet && inches < d.inches) {
-              return true;
-           }
-
            return false;
         }
         
@@ -70,47 +68,56 @@ class Distance {
             //Distance box;
             feet = d.feet + 5;
             inches = d.inches + 5;
-            //return ;
+            
+            return *this;
         }
-        Distance& operator *= (double factor) // Scale the coordinates & assign.
+        Distance& operator *= (int factor) // Scale the coordinates & assign.
         {
-            feet = feet * factor;
-            inches = inches * factor;
+            feet *= factor;
+            inches *= factor;
             //return ;
         }
 };
 
+ostream& operator << (ostream& os, const Distance& p) // Send to ostream.
+{
+ 
+}
+
 int main() 
 {
-    Distance D1(11, 10), D2(-5, 11), D3, D4, D5;
+    Distance D1(11, 10), D2(11, 11), D3, D4, D5;
+    int factor = 5;
    
-    if( D1 < D2 ) 
+    if( D1 == D2 ) 
     {
-      cout << "D1 is less than D2 " << endl;
+      cout << "D1 is equal to D2 " << endl;
     } 
     else 
     {
-      cout << "D2 is less than D1 " << endl;
-     }
+      cout << "D1 is not equal to D2 " << endl;
+    }
    
      D3 = D1 + D2;
-     cout << "D3: " ;
-     D3.displayDistance();    // display 3
+     cout << "D3: " ; D3.displayDistance();    // display 3
 
      D4 = D1 * D2;
      cout << "D4: " ; D4.displayDistance();     // display 4
-
-     
 
      -D1;                     // apply negation
      cout << "-D1: " ; D1.displayDistance();    // display D1
 
      -D2;                     // apply negation
      cout << "-D2: " ; D2.displayDistance() ;     // display D2
+ 
      D3 = D1 + D2;
      cout << "D3: " ; D3.displayDistance();     // display 3
      
      D1 = D2;
-     cout << "D1: " ; D1.displayDistance();    // display 5
+     cout << "D5: " ; D1.displayDistance();    // display 5
+ 
+     D1 *= factor;
+     cout << "D6: " ; D1.displayDistance();    // display 5
+ 
      return 0;
 }
