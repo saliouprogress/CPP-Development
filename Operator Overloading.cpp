@@ -81,14 +81,20 @@ class Distance {
             //cout << out_string;
             return out_string;
         }
+        explicit Distance(double distance)
+        {
+           feet = distance;
+           inches = distance;
+        }
         //friend ostream& operator << (ostream& os, const Distance& p);
 };
 
+// Part 2.42
 ostream& operator << (ostream& os, const Distance& p) // Send to ostream.
 {
-    //std:string ss;
-    //ss = p.ToString();
-    os << "Working " << endl;
+    Distance box;
+    box = p;
+    os << box.ToString() <<  endl;
     return os ;
 }
 
@@ -128,9 +134,15 @@ int main()
      D1 *= factor;
      cout << "D6: " ; D1.displayDistance();    // display 5
  
-     cout << D1.ToString() ;
+     cout << D2;
  
-     cout << D1;
-      
+     // Part 2.43
+     
+     Distance p(2.0, 2.0);
+     //if (p==1.0) cout<<"Equal!"<<endl;
+     //else cout<<"Not equal"<<endl;
+     
+     if (p == (Distance) 2.0 ) cout<<"Equal!"<<endl;
+     else cout<<"Not equal"<<endl;
      return 0;
 }
