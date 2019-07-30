@@ -87,6 +87,24 @@ double Point::Distance(const Point& pp)
     return distance;
 }
 
+ class MyClass
+ {
+ public:
+     MyClass() { 
+        itsAge = 1; 
+        itsWeight=5; 
+     } 
+     ~MyClass() {}                          
+     int GetAge() const { return itsAge; }
+     int GetWeight() const { return itsWeight; }
+     void SetAge(int age) { itsAge = age; }
+ 
+ private:
+     int itsAge;
+     int itsWeight;
+ };
+ 
+
 
 #include <iostream>
 #include <sstream>
@@ -106,7 +124,7 @@ int main()
     cout<<endl;
     
     Point* pp;
-    pp = new Point; // Default constructor is called
+    //pp = new Point; // Default constructor is called
     pp= new Point(Point1_Object); //Copy Constructor
     pp = new Point(Point2_Object);
     pp = new Point(7,8);
@@ -128,20 +146,60 @@ int main()
     
     //               Exercise 2: Creating Array of Pointers
     
-    int ArrSize = 3;
+    int ArrSize = 3, i;
     //cin >> ArrSize;
-    Point* Arr;
-    Arr = new Point[ArrSize];
+    Point* Arr[ArrSize];
+    Point * ArrPointer;
     
+     for (i = 0; i < ArrSize; i++)
+     {
+         ArrPointer = new Point(i, i+1);
+         //ArrPointer-> Point(2*i , 1);
+         Arr[i] = ArrPointer;
+         //cout << "Point" << i+1 << ": " << endl;
+     }
     
-    Arr = new Point(*pp);
-    (Arr) = new Point(2,3);
-    //*(P_Arr + 2) = new Point();
-    cout << ((Arr[0]).GetX()) << " and " << ((*Arr).GetY()) << endl;
+    for (i = 0; i < ArrSize; i++){
+         cout << "Point" << i+1 << ": (" << Arr[i] -> GetX() << ", " << Arr[i] -> GetY()<< ")" << endl;}
     
-    
+    //delete[] Arr;
+    for (i = 0; i < ArrSize; i++)
+    {
+        cout << "Point" << i + 1  << ":  deleted" << endl;
+        delete Arr[i];
+    }
+    cout << "Point" << "1" << ": (" << Arr[0] -> GetX() << ", " << Arr[0] -> GetY()<< ")" << endl;
     delete[] Arr;
-    //cout << endl << endl << endl << "END!!!" << endl;
+    //Arr = new Point(*pp);
+    //Point[1] = new Point(2,3);
+    //*(P_Arr + 2) = new Point();
+    //cout << ((Arr[0]).GetX()) << " and " << ((*Arr).GetY()) << endl;
+    
+    //delete[] Arr;
+    //elete[] Arr;
+    cout << endl << endl <<  "              END!!!";
+    //////////////////////////////////////////////////
+    /*
+    MyClass * myObject[50];
+     int i;
+     MyClass * objectPointer;
+     for (i = 0; i < 50; i++)
+     {
+         objectPointer = new MyClass;
+         objectPointer->SetAge(2*i +1);
+         myObject[i] = objectPointer;
+     }
+ 
+     for (i = 0; i < 50; i++)
+         std::cout << "#" << i+1 << ": " << myObject[i]->GetAge() << std::endl;
+
+ 
+     for (i = 0; i < 50; i++)
+     {
+         delete myObject[i];
+         myObject[i] = NULL;
+     }
+    */
     
  }
    
