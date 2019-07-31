@@ -16,6 +16,7 @@ namespace ns
 	void display(); 
 	class geek 
 	{ 
+		
 	public: 
 	void display(); 
 	}; 
@@ -25,6 +26,7 @@ namespace ns
 void ns::geek::display() 
 { 
 	cout << "ns::geek::display()\n"; 
+	MamadouDiallo::CAD::display();
 } 
 void ns::display() 
 { 
@@ -46,7 +48,7 @@ int main()
 	ns::geek obj; 
 	ns::display(); 
 	obj.display(); 
-  MamadouDiallo::CAD::display();
-  MamadouDiallo :: Containers :: display();
+  	MamadouDiallo::CAD::display();
+ 	MamadouDiallo :: Containers :: display();
 	return 0; 
 } 
