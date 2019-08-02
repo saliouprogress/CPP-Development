@@ -19,10 +19,11 @@ public:
     //Mutators
     void SetX(double x);
     void SetY(double Y);
+   
 private:
     double xCOORD, yCOORD;
 };
-
+ostream& operator<<(ostream& os, const Point& dt);
 #endif // POINT_H 
 
 ////////////////////////////////////// Line Class ////////////////////////////////////
@@ -41,16 +42,17 @@ class Line
 public:
     Line();
     Line(Point P1, Point P2); 
-    Line(const & Obj);
+    Line(const Line& Obj);
    
     double GetA();
     double GetB();
-    string ToString(double A, double B);
+    string ToString();
+    
 private:
     Point p1, p2;
     double A,B;
 };
-
+ostream& operator<<(ostream& os, const Line& dt);
 #endif // LINE_H 
 
 //////////////////////////////////// Circle Class ///////////////////////////////////////
@@ -207,7 +209,7 @@ Line::Line(Point P1, Point P2)
     cout <<  "Constructor with start and end point called"  << endl;
 }
 
-Line::Line(const Point& Obj)
+Line::Line(const Line& Obj)
 {
     cout <<  " Copy Constructor called"  << endl;
 }
@@ -221,7 +223,7 @@ double Line::GetB()
     return B;
 }
 
-std::string Line::ToString(double A, double B)
+std::string Line::ToString()
 {
     std::string out_string;
     std:stringstream buffer;
@@ -230,6 +232,12 @@ std::string Line::ToString(double A, double B)
     out_string = buffer.str();
     cout << out_string;
     return out_string;
+}
+
+ostream& operator<<(ostream& os, const Line& dt)
+{
+    //os << dt.ToString() << endl;
+    return os;
 }
 //////////////////////////////////////// Point.cpp ///////////////////////////////////////////
 
@@ -262,20 +270,18 @@ void Point::SetY(double y)
 {
     yCOORD = y;
 }
-
+ostream& operator<<(ostream& os, const Point& dt)
+{
+    //os << dt.GetX() << '/' << dt.GetY() << '/' << endl;
+    return os;
+}
 
 //ACCESSOR FUNCTIONS
-//This is how it is done
-//In order to return a Private variable's value.
-//In order to access a private variable's value.
+
 double Point::GetX()
-{
-    return xCOORD;
-}
+{   return xCOORD;  }
 double Point::GetY()
-{
-    return yCOORD;
-}
+{    return yCOORD; }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
@@ -298,13 +304,9 @@ int main()
 
     Line THE_Line(Point1_Object, Point2_Object);
     //cout<< "Resulting line: " << "y = " << THE_Line.GetA() << "x" << " + " << THE_Line.GetB() << endl;
-    THE_Line.ToString(THE_Line.GetA(), THE_Line.GetB());
+    THE_Line.ToString();
     
-    Point Obj;
-    Obj = Point1_Object;
-    Line(Obj);
-    //Line THE_Line();
-    
+   
     //double radius = 5;
     Circle THE_Circle(Point1_Object, Point2_Object);
     //THE_Circle.ToString(THE_Circle.GetXC(),, );
