@@ -7,7 +7,12 @@ using namespace std;
 class Parent 
 { 
 	public: 
-	int id_p; 
+	int id_p;
+	void print () 
+    	{ cout<< "print parent class" <<endl; } 
+   
+    	void show () 
+    	{ cout<< "show parent class" <<endl; }
 }; 
 /////////////////////////////////////////////////////////////////
 // Sub class inheriting from Base Class(Parent) 
@@ -15,6 +20,11 @@ class Child : public Parent
 { 
 	public: 
 	int id_c; 
+	void print () //print () is already virtual function in derived class, we could also declared as virtual void print () explicitly 
+    	{ /*cout<< "print child class" <<endl; */} 
+   
+    	void show () 
+    	{ cout<< "show child class" <<endl; } 
 }; 
 // base class 
 class Vehicle  : public Child 
@@ -145,6 +155,17 @@ int main()
 	cout << "Child id is " << obj1.id_c << endl; 
 	cout << "Parent id is " << obj1.id_p << endl; 
 	//Car obj; 
+	
+	Parent *bptr; 
+    	//Child d; 
+    	//bptr = &d; 
+       
+    	//virtual function, binded at runtime (Runtime polymorphism) 
+    	bptr->print();  
+       
+    	// Non-virtual function, binded at compile time 
+    	bptr->show();  
+  
 	return 0; 
     
 }
