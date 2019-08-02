@@ -161,14 +161,14 @@ int main()
     
     for (i = 0; i < ArrSize; i++){
          cout << "Point" << i+1 << ": (" << Arr[i] -> GetX() << ", " << Arr[i] -> GetY()<< ")" << endl;}
-    
+    //cout << "Point" << "1" << ": (" << Arr[0] -> GetX() << ", " << Arr[0] -> GetY()<< ")" << endl;
     //delete[] Arr;
     for (i = 0; i < ArrSize; i++)
     {
         cout << "Point" << i + 1  << ":  deleted" << endl;
         delete Arr[i];
     }
-    cout << "Point" << "1" << ": (" << Arr[0] -> GetX() << ", " << Arr[0] -> GetY()<< ")" << endl;
+    //cout << "Point" << "1" << ": (" << Arr[0] -> GetX() << ", " << Arr[0] -> GetY()<< ")" << endl;
     delete[] Arr;
     //Arr = new Point(*pp);
     //Point[1] = new Point(2,3);
