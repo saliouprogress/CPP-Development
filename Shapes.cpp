@@ -1,30 +1,73 @@
+// C++ program to demonstrate implementation 
+// of Inheritance 
 #include <iostream>
+using namespace std; 
 
-using namespace std;
-/*
+//Base class 
+class Parent 
+{ 
+	public: 
+	int id_p; 
+}; 
+/////////////////////////////////////////////////////////////////
+// Sub class inheriting from Base Class(Parent) 
+class Child : public Parent 
+{ 
+	public: 
+	int id_c; 
+}; 
+// base class 
+class Vehicle  : public Child 
+{ 
+  public: 
+    Vehicle() 
+    { 
+      cout << "This is a Vehicle" << endl; 
+    } 
+}; 
+
+///////////////////////////////////////////////////////////////////
+class fourWheeler: public Vehicle 
+{  public: 
+    
+    fourWheeler() 
+    { 
+      cout<<"Objects with 4 wheels are vehicles"<<endl; 
+    } 
+}; 
+// sub class derived from two base classes 
+
+class Car: public fourWheeler{ 
+   
+  public: 
+     Car() 
+     { 
+       cout<<"Car has 4 Wheels"<<endl; 
+     } 
+}; 
+///////////////////////////////////////////////////////////////////
 class Shape
-
 {
 public:
     
     double ID()
     { 
         double x = 5;
-        //m_id = x;
-        cout << x << endl;
-        //return x;
+        m_id = x;
+        //cout << m_id << endl;
+        return m_id;
     }
     std::string String()
     {
-        cout << "Inheritence Working" << endl;
+      	string s = { "Inheritence Working"};
+        //cout << "Inheritence Working" << endl;
+      	return s;
     }
-private:
+//private:
     double m_id;
+};
 
-};*/
-
-
-class Point //: public Shape
+class Point : public Shape
 {
 public:
     //Default constructor
@@ -89,7 +132,20 @@ int main()
     cout << "Point1 (x,y) is: (" << Point1_Object.GetX() << "," << Point1_Object.GetY() << ")" << endl;
     cout<<endl;
     Point Point2_Object(6,4);
-    cout<<"Point2 (x,y) is: (" << Point2_Object.GetX() << "," << Point2_Object.GetY() << ")" << endl;
-   
+  	//Point2_Object.m_id = 7;
+    cout<<"Point2 (x,y) is: (" << Point2_Object.GetX() << "," << Point2_Object.GetY() << ")" << endl << 
+      Point2_Object.ID() << endl << Point2_Object.String() << endl << Point2_Object.m_id << endl;
+  	
+  
+	Car obj1; 
+		
+	// An object of class child has all data members 
+	// and member functions of class parent 
+	obj1.id_c = 7; 
+	obj1.id_p = 91; 
+	cout << "Child id is " << obj1.id_c << endl; 
+	cout << "Parent id is " << obj1.id_p << endl; 
+	//Car obj; 
+	return 0; 
     
 }
