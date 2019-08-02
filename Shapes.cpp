@@ -24,7 +24,7 @@ private:
 };*/
 
 
-class Point 
+class Point //: public Shape
 {
 public:
     //Default constructor
@@ -90,6 +90,6 @@ int main()
     cout<<endl;
     Point Point2_Object(6,4);
     cout<<"Point2 (x,y) is: (" << Point2_Object.GetX() << "," << Point2_Object.GetY() << ")" << endl;
-    cout<<endl;
+   
     
 }
