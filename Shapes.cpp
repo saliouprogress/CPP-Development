@@ -57,7 +57,7 @@ public:
         //cout << m_id << endl;
         return m_id;
     }
-    std::string String()
+    std::string ToString()
     {
       	string s = { "Inheritence Working"};
         //cout << "Inheritence Working" << endl;
@@ -98,18 +98,18 @@ Point::Point():xCOORD(0), yCOORD(0)
 
 Point::Point(double new_x, double new_y)
 {
-    xCOORD = new_x;
-    yCOORD = new_y;
+    	xCOORD = new_x;
+    	yCOORD = new_y;
 }
 
 //MUTATOR FUNCTIONS
 void Point::SetX(double x)
 {
-    xCOORD = x;
+    	xCOORD = x;
 }
 void Point::SetY(double y)
 {
-    yCOORD = y;
+    	yCOORD = y;
 }
 //ostream& operator<<(ostream& os, const Point& dt)
 //{
@@ -120,24 +120,23 @@ void Point::SetY(double y)
 //ACCESSOR FUNCTIONS
 
 double Point::GetX()
-{   return xCOORD;  }
+{   	return xCOORD;  }
 double Point::GetY()
-{    return yCOORD; }
+{    	return yCOORD; }
 
 
 int main()
 {
     
-    Point Point1_Object(5,5);
-    cout << "Point1 (x,y) is: (" << Point1_Object.GetX() << "," << Point1_Object.GetY() << ")" << endl;
-    cout<<endl;
-    Point Point2_Object(6,4);
+    	Point Point1_Object(5,5);
+    	cout << "Point1 (x,y) is: (" << Point1_Object.GetX() << "," << Point1_Object.GetY() << ")" << endl;
+    	cout<<endl;
+    	Point Point2_Object(6,4);
   	//Point2_Object.m_id = 7;
-    cout<<"Point2 (x,y) is: (" << Point2_Object.GetX() << "," << Point2_Object.GetY() << ")" << endl << 
-      Point2_Object.ID() << endl << Point2_Object.String() << endl << Point2_Object.m_id << endl;
+    	cout<<"Point2 (x,y) is: (" << Point2_Object.GetX() << "," << Point2_Object.GetY() << ")" << endl << 
+      	Point2_Object.ID() << endl << Point2_Object.ToString() << endl << Point2_Object.m_id << endl;
   	
-  
-	Car obj1; 
+  	Car obj1; 
 		
 	// An object of class child has all data members 
 	// and member functions of class parent 
