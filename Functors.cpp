@@ -1,30 +1,30 @@
-#include <iostream> 
+#include <iostream>     // std::cout
+#include <algorithm>    // std::count_if
+#include <vector>  
 using namespace std; 
   
 // A Functor 
+template <typename T>
 class isSmaller 
 { 
 private: 
-    double num; 
+    T num; 
 public: 
-    isSmaller(dbouble n) : num(n) {  } 
-  
-    // This operator overloading enables calling 
-    // operator function () on objects of increment 
-    double operator () (double arr_num) const { 
-        return num + arr_num; 
+    isSmaller(T n) : num(n) {  } 
+    bool operator () (T arr_num) const { 
+        return num >= arr_num ? true : false;
     } 
 }; 
   
 // Driver code 
 int main() 
 { 
-    int arr[] = {1, 2, 3, 4, 5}; 
-    int n = sizeof(arr)/sizeof(arr[0]); 
-    int to_add = 5; 
+   std::vector<double> myvector;
+  for (int i=1; i<10; i++) myvector.push_back(i*1.5); // myvector: 1 2 3 4 5 6 7 8 9
+  double cutoff = 6;
+  double mycount = count_if(myvector.begin(), myvector.end(), isSmaller<double>(cutoff));
+  std::cout << "myvector contains " << mycount  << " odd values.\n";
   
-    transform(arr, arr+n, arr, isSmaller(to_add)); 
-  
-    for (int i=0; i<n; i++) 
-        cout << arr[i] << " "; 
+  for (int i=0; i<myvector.size(); i++) 
+    cout << myvector[i] << " "; 
 } 
