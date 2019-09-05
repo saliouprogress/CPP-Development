@@ -1,6 +1,7 @@
 #include <iostream>     // std::cout
 #include <algorithm>    // std::count_if
 #include <vector>  
+#include <iterator>
 using namespace std; 
   
 // A Functor 
@@ -15,6 +16,15 @@ public:
         return (arr_num <= num) ? true : false;
     } 
 }; 
+
+template <typename T>
+double sum(T iterStart, T iterEnd)
+{
+    double sum = 0.0;
+    for(iterStart; iterStart != iterEnd; iterStart++)
+        sum += (*iterStart);
+    return sum;
+}
   
 // Driver code 
 int main() 
@@ -26,5 +36,5 @@ int main()
   double mycount = count_if(myvector.begin(), myvector.end(), isSmaller<double>(cutoff));
   std::cout << "myvector contains " << mycount  << " values less than or equal to " << cutoff << ".\n";
   
-  
+  cout << sum(myvector.beginr) << endl;
 } 
