@@ -7,11 +7,14 @@ using namespace std;
 
 string Print(const tuple <string, int, float>& tuple_print)
 {
-	cout << get<0>(tuple_print) << " " << get<1>(tuple_print); 
-	std::stringstream ss;
-  	ss.str << "Name: "<< get<0>(tuple_print) << ",Age: " << get<1>(tuple_print) << ",Height: " << get<2>(tuple_print) << endl;
-  	std::string s = ss.str();
-	return s;
+	std::string out_string;
+    	std:stringstream buffer;
+    
+    	buffer << "Name: "<< get<0>(tuple_print) << " ,Age: " << get<1>(tuple_print) << " ,Height: " << get<2>(tuple_print) << endl;
+    	out_string = buffer.str();
+    	cout << out_string;
+    	return out_string;
+	
 }
 int main() 
 { 
@@ -27,8 +30,8 @@ int main()
 	cout << " " << get<2>(geek) << endl; 
 
 	// Use of get() to change values of tuple 
-	get<0>(geek) = "cde"; 
-	get<2>(geek) = 20.5; 
+	//get<0>(geek) = "cde"; 
+	//get<2>(geek) = 20.5; 
 
 	// Printing modified tuple values 
 	cout << "The modified values of tuple are : "; 
