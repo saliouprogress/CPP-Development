@@ -30,11 +30,11 @@ double sum(T iterStart, T iterEnd)
 int main() 
 { 
   std::vector<double> myvector;
-  for (int i=1; i<20; i++) myvector.push_back(-i*.5); // myvector: 1 2 3 4 5 6 7 8 9
+  for (int i=0; i<20; i++) myvector.push_back(-.5*i); // myvector: 1 2 3 4 5 6 7 8 9
   for (int i=0; i<myvector.size(); i++) cout << myvector[i] << " " << endl; 
   double cutoff = -2;
   double mycount = count_if(myvector.begin(), myvector.end(), isSmaller<double>(cutoff));
   std::cout << "myvector contains " << mycount  << " values less than or equal to " << cutoff << ".\n";
   
-  cout << sum(myvector.beginr) << endl;
+  cout << sum(myvector.begin(), myvector.end()) << endl;
 } 
