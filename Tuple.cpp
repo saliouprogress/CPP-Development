@@ -1,10 +1,11 @@
 #include<iostream> 
 //#include <stringstream>
 #include<tuple> // for tuple 
+#include <boost/tuple/tuple.hpp>
 #include<string>
 #include <sstream>
 using namespace std; 
-
+using boost::tuple;
 string Print(const tuple <string, int, float>& tuple_print)
 {
 	std::string out_string;
