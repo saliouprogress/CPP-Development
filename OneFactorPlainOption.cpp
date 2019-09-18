@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 using namespace std;
 
 double normalDistribution(double x)
@@ -52,8 +53,32 @@ double callOptionPrice(double S,double t,double X,double r,double sigma,double T
   return normalDistribution(d1)*S - normalDistribution(d2)*X*exp(-r*(T-t));
 }
 
+// Black-Scholes Gamma
+
+double BSGamma(double S, double K, double T, double r, double b, double sig)
+
+{
+
+double d1 = (log(S/K) + T*(b + 0.5*sig*sig)) / (sig*sqrt(T));
+
+//return normalDistribution(d1) * exp((b-r)*T)/ (S * sig * sqrt(T));
+return normalDistribution(d1) * exp((b-r)*T); /// (S * sig * sqrt(T));
+
+}
+
 int main()
 {
-  cout << "Call Option Price = " << callOptionPrice(100,0,100,0.0,0.2,1) << endl;
+  //cout << "Call Option Price = " << callOptionPrice(105,0,100,0.1,0.36,.5) << endl;
+  cout << "Call Option Price Gamma = " << BSGamma(105,100,0.5,0.1,0.0,0.36) << endl;
+  vector<double> OptionPrices, OptionDeltas;
+  double S = 105;
+  for (int i = 0; i < 10; i++)
+  {
+    OptionPrices.push_back(S+i);
+    OptionDeltas.push_back(BSGamma(S+i,100,0.5,0.1,0.0,0.36));
+    cout << OptionPrices[i] << ", " << OptionDeltas[i] << endl;
+    
+  }
+  //cout << OptionPrices << endl;
   return 0;
 }
