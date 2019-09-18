@@ -92,7 +92,11 @@ int main()
      //OptionDeltas.push_back(BSGamma(OptionPrices[i],StrikePrice[i],Maturity[i],Risk_FreeRate[i],CostofCarry[i],Volatility[i]));
     cout << endl << OptionPrices[i] << ", " << OptionDeltas[i] << endl;
   }
-  
+  vector<vector<double>> D_Vector;
+  D_Vector.push_back(OptionPrices), D_Vector.push_back(CostofCarry), D_Vector.push_back(Risk_FreeRate), D_Vector.push_back(Maturity);
+  D_Vector.push_back(Volatility), D_Vector.push_back(StrikePrice);
+  cout << "S " << "K " << endl; 
+  cout << (D_Vector[5])[9];
   //cout << OptionPrices << endl;
   return 0;
 }
