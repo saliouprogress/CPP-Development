@@ -70,15 +70,29 @@ int main()
 {
   //cout << "Call Option Price = " << callOptionPrice(105,0,100,0.1,0.36,.5) << endl;
   cout << "Call Option Price Gamma = " << BSGamma(105,100,0.5,0.1,0.0,0.36) << endl;
-  vector<double> OptionPrices, OptionDeltas;
-  double S = 105;
+  vector<double> OptionPrices, OptionDeltas, CostofCarry, Risk_FreeRate, Maturity, Volatility, StrikePrice;
+  double S = 105, T = 0.5;
   for (int i = 0; i < 10; i++)
   {
     OptionPrices.push_back(S+i);
-    OptionDeltas.push_back(BSGamma(S+i,100,0.5,0.1,0.0,0.36));
-    cout << OptionPrices[i] << ", " << OptionDeltas[i] << endl;
+    CostofCarry.push_back(0 + i/100);
+    Risk_FreeRate.push_back(0 + i/100);
+    Maturity.push_back(T +i);
+    Volatility.push_back(.36 + i/100);
+    StrikePrice.push_back(S -4*i);
+    //OptionDeltas.push_back(BSGamma(OptionPrices[i],100,0.5,0.1,0.0,0.36));
+    //cout << OptionPrices[i] << ", " << OptionDeltas[i] << endl;
     
+    OptionDeltas.push_back(BSGamma(OptionPrices[i],StrikePrice[i],Maturity[i],Risk_FreeRate[i],CostofCarry[i],Volatility[i]));
+    //cout << OptionPrices[i] << ", " << OptionDeltas[i] << endl;
   }
+  
+  for (int i = 0; i < 10; i++)
+  {
+     //OptionDeltas.push_back(BSGamma(OptionPrices[i],StrikePrice[i],Maturity[i],Risk_FreeRate[i],CostofCarry[i],Volatility[i]));
+    cout << endl << OptionPrices[i] << ", " << OptionDeltas[i] << endl;
+  }
+  
   //cout << OptionPrices << endl;
   return 0;
 }
