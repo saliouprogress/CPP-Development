@@ -1,24 +1,34 @@
 // Online C++ compiler to run C++ program online
 #include <iostream>
+#include <functional>
 
-#include "./leetcodeQuestions/lrucache.cpp"
+
+// #include "./array.cpp"
 
 int main() {
  
-    int capacity = 5;
-    LRUCache* obj = new LRUCache(capacity);
+//    int size = 5;
+//     Array<std::string, 5> data;
 
-    obj->put(1,1);
-    obj->put(2,2);
-    int param_1 = obj->get(1);
-    obj->put(4,3);
-    int param_2 = obj->get(2);
-    obj->put(4,4);
-    int param_3 = obj->get(1);
+//     data[0] = "Cherno";
+//     data[1] = "C++";
 
-    int param_4 = obj->get(4);
-    std::cout << param_1 << param_2 << param_1 << param_4 << "\n";
+//     for (size_t i = 0; i < data.Size(); i++) {
+//         std::cout << data[i] << std::endl;
+//     }
 
-    return 0;
+    constexpr int x = 10; // A constexpr variable initialized with a constant expression.
+
+    // constexpr int factorial(int n) { // A constexpr function that can be evaluated at compile time.
+    //     if (n == 0) {
+    //         return 1;
+    //     } else {
+    //         return n * factorial(n - 1);
+    //     }
+    // }
+
+    std::cout << 56 << std::endl;
+
+    return 0; 
     
 }
