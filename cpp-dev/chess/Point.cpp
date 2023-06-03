@@ -1,6 +1,7 @@
-// point.h
-#include <iostream>
+#ifndef POINT_CPP_GUARD
+#define POINT_CPP_GUARD
 
+#include <iostream>
 class Point {
     public:
     int x;
@@ -9,7 +10,7 @@ class Point {
 
     Point() {}
 
-    Point(int x, int y) : x(x), y(y) {}
+    Point(int x, int y) : x(x), y(y), z(0) {}
 
     Point(int x, int y, int z) : x(x), y(y), z(z) {}
 
@@ -42,3 +43,5 @@ class Point {
     }
 
 };
+
+#endif

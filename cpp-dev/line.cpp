@@ -1,7 +1,9 @@
 
+// #include "point.cpp"
 
-
-// class Line {
-//     int slope;
-//     int x
-// }
+class Line {
+    Line(int x) : x(x) {}
+    private:
+        int slope;
+        int x;
+};
