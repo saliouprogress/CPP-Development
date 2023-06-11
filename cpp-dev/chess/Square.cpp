@@ -1,6 +1,19 @@
 #include <iostream>
 
 #include "Point.cpp"
+#include "Piece.cpp"
+
+
+struct Attributes {
+    std::string color;
+    std::string player_name;
+    size_t      palyer_Id;
+    std::string current_piece_name;
+    std::string position;
+
+    Attributes() : color("White"), player_name(""), palyer_Id(0), 
+    current_piece_name(""), position("") {}
+};
 
 class Square {
     public:
@@ -34,6 +47,16 @@ class Square {
             return this->square;
         }
 
+        void setAttributes() {
+            Attributes attributes;
+            this->attributes = attributes;
+            // std::cout << this->attributes.color << std::endl;
+        }
+
+        Attributes& getAttributes() {
+            return this->attributes;
+        }
+
         void printSquare() {
             std::cout <<  ")" << this->top_left_point.y << "--------" << this->top_right_point.y << "(";
             std::cout <<  "|"                          << "          " << "|";
@@ -49,4 +72,5 @@ class Square {
 
     private:
         std::vector<Point> square;
+        Attributes attributes;
 };
