@@ -59,28 +59,34 @@ class Grid {
                 
                 for(int j = 0; j < this->squares.size(); j++) {
                     Square square = this->squares[j][i];
-                    std::cout <<  ")" << square.top_left_point.getY() << "--------" << square.top_right_point.getY() << "(";
+                    std::cout <<  ")------------(";
                 }
                 std::cout << "\n";
                 for(int j = 0; j < this->squares.size(); j++) {
-                    std::cout <<  "|"                          << "    " <<  squares[i][j].getAttributes().position << "    " << "|";
+                    std::cout <<  "|"                          << "     " <<  squares[i][j].getAttributes().position << "     " << "|";
                 }
                 std::cout << "\n";
                 for(int j = 0; j < this->squares.size(); j++) {
-                    std::cout <<  "*"                          << "  " <<  squares[i][j].getAttributes().color << "   " << "*";
+                    std::cout <<  "|"                          << "   " <<  squares[i][j].getAttributes().color << "    " << "|";
                 }
                 std::cout << "\n";
                 for(int j = 0; j < this->squares.size(); j++) {
                     if(squares[i][i].getAttributes().current_piece_name != "") {
-                         std::cout <<  "|"                          << "" <<  squares[i][j].getAttributes().current_piece_name << "" << "|";
+                        if(squares[i][j].getAttributes().current_piece_name.size() == 6) {
+                         std::cout <<  "|"                          << "   " <<  squares[i][j].getAttributes().current_piece_name << "   " << "|";
+                        } else if(squares[i][j].getAttributes().current_piece_name.size() == 7) {
+                            std::cout <<  "|"                          << "  " <<  squares[i][j].getAttributes().current_piece_name << "   " << "|";
+                        } else if(squares[i][j].getAttributes().current_piece_name.size() == 8) {
+                            std::cout <<  "|"                          << "  " <<  squares[i][j].getAttributes().current_piece_name << "  " << "|";
+                        } 
                     } else {
-                        std::cout <<  "|"                          << "          " << "|";
+                        std::cout <<  "|"                          << "            " << "|";
                     }
                 }
                 std::cout << "\n";
                 for(int j = 0; j < this->squares.size(); j++) {
                     Square square = this->squares[j][i];
-                    std::cout <<  ")" << square.bottom_left_point.getX() << "--------" << square.bottom_right_point.getX() << "(";
+                    std::cout <<  ")------------(";
                 }
                 std::cout << "\n";
             }
@@ -147,136 +153,136 @@ class Grid {
 void Grid::setPieces() {
 
     // set bishops
-    this->blue_bishop1.setName("Blue Bishop");
+    this->blue_bishop1.setName("B Bishop");
     this->blue_bishop1.setColor("Blue");
     this->blue_bishop1.setId(1);
 
-    this->blue_bishop2.setName("Blue Bishop");
+    this->blue_bishop2.setName("B Bishop");
     this->blue_bishop2.setColor("Blue");
     this->blue_bishop2.setId(2);
 
-    this->red_bishop1.setName("Red Bishop");
+    this->red_bishop1.setName("R Bishop");
     this->red_bishop1.setColor("Red");
     this->red_bishop1.setId(1);
 
-    this->red_bishop2.setName("Red Bishop");
+    this->red_bishop2.setName("R Bishop");
     this->red_bishop2.setColor("Red");
     this->red_bishop2.setId(2);
     
     // set knights
-    this->blue_knight1.setName("Blue Knight");
-    this->blue_knight1.setColor("blue");
+    this->blue_knight1.setName("B Knight");
+    this->blue_knight1.setColor("Blue");
     this->blue_knight1.setId(1);
 
-    this->blue_knight2.setName("Blue Knight");
-    this->blue_knight2.setColor("blue");
+    this->blue_knight2.setName("B Knight");
+    this->blue_knight2.setColor("Blue");
     this->blue_knight2.setId(2);
 
-    this->red_knight1.setName("Red Knight");
+    this->red_knight1.setName("R Knight");
     this->red_knight1.setColor("Red");
     this->red_knight1.setId(1);
 
-    this->red_knight2.setName("Red Knight");
+    this->red_knight2.setName("R Knight");
     this->red_knight2.setColor("Red");
     this->red_knight2.setId(2);
 
     // set rocks
-    this->blue_rock1.setName("Blue Rock");
-    this->blue_rock1.setColor("blue");
+    this->blue_rock1.setName("B Rock");
+    this->blue_rock1.setColor("Blue");
     this->blue_rock1.setId(1);
 
-    this->blue_rock2.setName("Blue Rock");
-    this->blue_rock2.setColor("blue");
+    this->blue_rock2.setName("B Rock");
+    this->blue_rock2.setColor("Blue");
     this->blue_rock2.setId(2);
 
-    this->red_rock1.setName("Red Rock");
+    this->red_rock1.setName("R Rock");
     this->red_rock1.setColor("Red");
     this->red_rock1.setId(1);
 
-    this->red_rock2.setName("Red Rock");
+    this->red_rock2.setName("R Rock");
     this->red_rock2.setColor("Red");
     this->red_rock2.setId(2);
 
     // set queens
-    this->blue_queen.setName("Blue Queen");
-    this->blue_queen.setColor("blue");
+    this->blue_queen.setName("B Queen");
+    this->blue_queen.setColor("Blue");
     this->blue_queen.setId(1);
 
-    this->red_queen.setName("Red Queen");
+    this->red_queen.setName("R Queen");
     this->red_queen.setColor("Red");
     this->red_queen.setId(1);
 
     // set kings
-    this->blue_king.setName("Blue King");
-    this->blue_king.setColor("blue");
+    this->blue_king.setName("B King");
+    this->blue_king.setColor("Blue");
     this->blue_king.setId(1);
 
-    this->red_king.setName("Red King");
+    this->red_king.setName("R King");
     this->red_king.setColor("Red");
     this->red_king.setId(1);
 
     // set pawns
-    this->blue_pawn1.setName("Blue Pawn");
+    this->blue_pawn1.setName("B Pawn");
     this->blue_pawn1.setColor("Blue");
     this->blue_pawn1.setId(1);
 
-    this->blue_pawn2.setName("Blue Pawn");
+    this->blue_pawn2.setName("B Pawn");
     this->blue_pawn2.setColor("Blue");
     this->blue_pawn2.setId(2);
 
-    this->blue_pawn3.setName("Blue Pawn");
+    this->blue_pawn3.setName("B Pawn");
     this->blue_pawn3.setColor("Blue");
     this->blue_pawn3.setId(3);
 
-    this->blue_pawn4.setName("Blue Pawn");
+    this->blue_pawn4.setName("B Pawn");
     this->blue_pawn4.setColor("Blue");
     this->blue_pawn4.setId(4);
 
-    this->blue_pawn5.setName("Blue Pawn");
+    this->blue_pawn5.setName("B Pawn");
     this->blue_pawn5.setColor("Blue");
     this->blue_pawn5.setId(5);
 
-    this->blue_pawn6.setName("Blue Pawn");
+    this->blue_pawn6.setName("B Pawn");
     this->blue_pawn6.setColor("Blue");
     this->blue_pawn6.setId(6);
 
-    this->blue_pawn7.setName("Blue Pawn");
+    this->blue_pawn7.setName("B Pawn");
     this->blue_pawn7.setColor("Blue");
     this->blue_pawn7.setId(7);
 
-    this->blue_pawn8.setName("Blue Pawn");
+    this->blue_pawn8.setName("B Pawn");
     this->blue_pawn8.setColor("Blue");
     this->blue_pawn8.setId(8);
 
-    this->red_pawn1.setName("Blue Pawn");
-    this->red_pawn1.setColor("Blue");
+    this->red_pawn1.setName("R Pawn");
+    this->red_pawn1.setColor("Red");
     this->red_pawn1.setId(1);
 
-    this->red_pawn2.setName("Red Pawn");
+    this->red_pawn2.setName("R Pawn");
     this->red_pawn2.setColor("Red");
     this->red_pawn2.setId(2);
 
-    this->red_pawn3.setName("Red Pawn");
+    this->red_pawn3.setName("R Pawn");
     this->red_pawn3.setColor("Red");
     this->red_pawn3.setId(3);
 
-    this->red_pawn4.setName("Red Pawn");
+    this->red_pawn4.setName("R Pawn");
     this->red_pawn4.setColor("Red");
     this->red_pawn4.setId(4);
 
-    this->red_pawn5.setName("Red Pawn");
+    this->red_pawn5.setName("R Pawn");
     this->red_pawn5.setColor("Red");
     this->red_pawn5.setId(5);
 
-    this->red_pawn6.setName("Red Pawn");
+    this->red_pawn6.setName("R Pawn");
     this->red_pawn6.setColor("Red");
     this->red_pawn6.setId(6);
 
-    this->red_pawn7.setName("Red Pawn");
+    this->red_pawn7.setName("R Pawn");
     this->red_pawn7.setColor("Red");
     this->red_pawn7.setId(7);
 
-    this->red_pawn8.setName("Red Pawn");
+    this->red_pawn8.setName("R Pawn");
     this->red_pawn8.setColor("Red");
     this->red_pawn8.setId(8);
 }
