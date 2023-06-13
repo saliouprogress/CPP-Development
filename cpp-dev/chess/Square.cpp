@@ -1,3 +1,6 @@
+#ifndef SQUARE_CPP_GUARD
+#define SQUARE_CPP_GUARD
+
 #include <iostream>
 
 #include "Point.cpp"
@@ -43,14 +46,12 @@ class Square {
             this->square.push_back(this->top_right_point);
         }
 
-        std::vector<Point> getSquare() {
+        std::vector<Point>& getSquare() {
             return this->square;
         }
 
-        void setAttributes() {
-            Attributes attributes;
-            this->attributes = attributes;
-            // std::cout << this->attributes.color << std::endl;
+        void setCurrentPieceName(const std::string current_piece_name) {
+            this->attributes.current_piece_name = current_piece_name;
         }
 
         Attributes& getAttributes() {
@@ -69,8 +70,10 @@ class Square {
         Point bottom_right_point;
         Point top_left_point;
         Point top_right_point;
+        Attributes attributes;
 
     private:
         std::vector<Point> square;
-        Attributes attributes;
 };
+
+#endif

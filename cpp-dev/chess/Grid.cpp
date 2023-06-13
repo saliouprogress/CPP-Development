@@ -4,11 +4,8 @@
 #include "Square.cpp"
 #include "Piece.cpp"
 
+
 const int BOARD_SIZE = 9;
-// const char EMPTY = ' ';
-// const char PLAYER_X = 'X';
-// const char PLAYER_O = 'O';
-using KeyType = std::tuple<int, int>;
 class Grid { 
     public:
         Grid() : gridPoints() {
@@ -30,6 +27,7 @@ class Grid {
         }
 
         void buildSquares() {
+            // std::cout << "Build Size: " << this->pieces.size() << std::endl;
             bool color_square = true;
             for (int i = 0; i < BOARD_SIZE - 1; i++) {
                 std::vector<Square> square_row;
@@ -39,8 +37,8 @@ class Grid {
                     (color_square == true) ? (square.getAttributes().color = "White") : (square.getAttributes().color = "Black");
                     std::string key = std::to_string(i) + std::to_string(j);
                     square.getAttributes().position  = this->positions[key];
-                    if(this->pieces.find(key) != this->pieces.end()) {
-                        square.getAttributes().current_piece_name = this->pieces[this->positions[key]].getName();
+                    if(this->pieces.find(this->positions[key]) != this->pieces.end()) {
+                        square.setCurrentPieceName( this->pieces[this->positions[key]].getName());
                     }
                     color_square == true ? color_square = false : color_square = true;
                     square_row.push_back(square);
@@ -50,20 +48,21 @@ class Grid {
             }
         }
 
-        std::vector<std::vector<Square>> getSquares() {
+        std::vector<std::vector<Square>>& getSquares() {
             return squares;
         }
-
+        
         void printBoard() {
             for ( int i = this->squares.size() - 1; i >= 0; i--) {
                 
                 for(int j = 0; j < this->squares.size(); j++) {
-                    Square square = this->squares[j][i];
+                    Square& square = this->squares[j][i];
                     std::cout <<  ")------------(";
                 }
                 std::cout << "\n";
                 for(int j = 0; j < this->squares.size(); j++) {
-                    std::cout <<  "|"                          << "     " <<  squares[i][j].getAttributes().position << "     " << "|";
+                    Attributes attr = squares[i][j].getAttributes();
+                    std::cout <<  "|"                          << "     " <<  attr.position << "     " << "|";
                 }
                 std::cout << "\n";
                 for(int j = 0; j < this->squares.size(); j++) {
@@ -71,24 +70,38 @@ class Grid {
                 }
                 std::cout << "\n";
                 for(int j = 0; j < this->squares.size(); j++) {
-                    if(squares[i][i].getAttributes().current_piece_name != "") {
-                        if(squares[i][j].getAttributes().current_piece_name.size() == 6) {
-                         std::cout <<  "|"                          << "   " <<  squares[i][j].getAttributes().current_piece_name << "   " << "|";
-                        } else if(squares[i][j].getAttributes().current_piece_name.size() == 7) {
-                            std::cout <<  "|"                          << "  " <<  squares[i][j].getAttributes().current_piece_name << "   " << "|";
-                        } else if(squares[i][j].getAttributes().current_piece_name.size() == 8) {
-                            std::cout <<  "|"                          << "  " <<  squares[i][j].getAttributes().current_piece_name << "  " << "|";
-                        } 
+                    Attributes attr = squares[i][j].getAttributes();
+                    if(attr.current_piece_name.size() == 0) {
+                        std::cout <<  "|"                          << "     -      " << "|";
+                    } else if(attr.current_piece_name.size() == 6) {
+                         std::cout <<  "|"                          << "   " <<  attr.current_piece_name << "   " << "|";
+                    } else if(attr.current_piece_name.size() == 7) {
+                        std::cout <<  "|"                          << "  " <<  attr.current_piece_name << "   " << "|";
                     } else {
-                        std::cout <<  "|"                          << "            " << "|";
+                        std::cout <<  "|"                          << "  " <<  attr.current_piece_name << "  " << "|";
                     }
                 }
                 std::cout << "\n";
                 for(int j = 0; j < this->squares.size(); j++) {
-                    Square square = this->squares[j][i];
+                    Square& square = this->squares[j][i];
                     std::cout <<  ")------------(";
                 }
                 std::cout << "\n";
+            }
+        }
+
+        void movePiece(std::string init_position, std::string final_position) {
+            this->pieces[final_position] = this->pieces[init_position];
+            this->pieces.erase(init_position);
+            
+            for (int i = 0; i <  this->squares.size(); i++) {
+                for(int j = 0; j < this->squares.size(); j++) {
+                    if(squares[i][j].getAttributes().position == final_position) {
+                        squares[i][j].setCurrentPieceName(this->pieces[final_position].getName());
+                    } else if(squares[i][j].getAttributes().position == init_position) {
+                        squares[i][j].setCurrentPieceName("");
+                    }
+                }
             }
         }
 
@@ -97,12 +110,7 @@ class Grid {
         void setPositions();
 
     private:
-        std::vector<std::vector<Point>> gridPoints;
-        std::vector<std::vector<Square>> squares;
-        std::unordered_map<std::string, std::string> positions; 
-        std::unordered_map<std::string, Piece> pieces;
-
-        //// set all the pieces
+         //// set all the pieces
         // Kings
         Piece red_king;
         Piece blue_king;
@@ -147,6 +155,11 @@ class Grid {
         Piece blue_pawn6;
         Piece blue_pawn7;
         Piece blue_pawn8;
+        std::vector<std::vector<Point>> gridPoints;
+        std::vector<std::vector<Square>> squares;
+        std::unordered_map<std::string, std::string> positions; 
+        std::unordered_map<std::string, Piece> pieces;
+
 };
 
 
@@ -327,11 +340,10 @@ void Grid::placePieces() {
 
 void Grid::setPositions() {
     std::vector<std::string> vecLetters = {"A", "B", "C", "D", "E", "F", "G", "H"};
-    for (int i = 0; i < vecLetters.size(); i++) {
+    for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             std::string key = std::to_string(i ) + std::to_string(j);
             positions[key] = vecLetters[j] + std::to_string(i + 1);
-            this->pieces[key] = this->red_king;
         }
     } 
 }

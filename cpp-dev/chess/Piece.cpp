@@ -48,7 +48,7 @@ public:
         this->position = position;
     }
 
-    const std::string getPosition() {
+    const std::string& getPosition() {
         return this->position;
     }
 
