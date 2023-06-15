@@ -26,14 +26,12 @@ void echoInput() {
 }
 
 int main() {
-    // Grid grid;
-    // grid.movePiece("D8", "D5");
-    // grid.movePiece("H2", "H3");
-    // grid.movePiece("E2", "E3");
-    // // sleep(5);
-    // grid.printBoard();
+    Grid grid;
+
+    grid.printBoard();
 
     // Call the echoInput function
-    echoInput();
+    grid.play();
+
     return 0;
 }

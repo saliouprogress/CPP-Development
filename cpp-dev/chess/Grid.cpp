@@ -27,7 +27,6 @@ class Grid {
         }
 
         void buildSquares() {
-            // std::cout << "Build Size: " << this->pieces.size() << std::endl;
             bool color_square = true;
             for (int i = 0; i < BOARD_SIZE - 1; i++) {
                 std::vector<Square> square_row;
@@ -54,7 +53,6 @@ class Grid {
         
         void printBoard() {
             for ( int i = this->squares.size() - 1; i >= 0; i--) {
-                
                 for(int j = 0; j < this->squares.size(); j++) {
                     Square& square = this->squares[j][i];
                     std::cout <<  ")------------(";
@@ -93,7 +91,6 @@ class Grid {
         void movePiece(std::string init_position, std::string final_position) {
             this->pieces[final_position] = this->pieces[init_position];
             this->pieces.erase(init_position);
-            
             for (int i = 0; i <  this->squares.size(); i++) {
                 for(int j = 0; j < this->squares.size(); j++) {
                     if(squares[i][j].getAttributes().position == final_position) {
@@ -105,6 +102,53 @@ class Grid {
             }
         }
 
+        bool verifyInput(const std::string input) {
+            if(input.size() == 2 && (static_cast<char>(input[0]) >= 65 && static_cast<char>(input[0]) <= 90) && 
+                (static_cast<char>(input[1]) >= 48 && static_cast<char>(input[1]) <= 57)) {
+                    return true;
+            }
+            return false;
+        }
+
+        bool isValidOrigin(const std::string origin) {
+            if(pieces.find(origin) == pieces.end()) { 
+                std::cout << "There is no piece there." << std::endl;
+                return false;
+            }
+            return true;
+        }
+
+        void getMoveInput() {
+            std::string origin;
+
+            // Read input from the terminal
+            while(true) {
+
+                std::cout << "Enter original: ";
+                std::getline(std::cin, origin);
+                for (char& c : origin) {
+                    c = std::toupper(c);
+                }
+                if(verifyInput(origin) && isValidOrigin(origin)) { break;}
+            }
+            std::string destination;
+
+            // Read input from the terminal
+            while (true) 
+            {
+                std::cout << "Enter destinaltion: ";
+                std::getline(std::cin, destination);
+                for (char& c : destination) {
+                    c = std::toupper(c);
+                }
+                if(verifyInput(destination)) { break;}
+            }
+            // if(isValidMove(origin, destination)) {
+                this->movePiece(origin, destination);
+                this->printBoard();
+            // }
+        }
+        void play();
         void setPieces();
         void placePieces();
         void setPositions();
@@ -131,11 +175,11 @@ class Grid {
         Piece blue_knight1;
         Piece blue_knight2;
 
-        // Rocks
-        Piece red_rock1;
-        Piece red_rock2;
-        Piece blue_rock1;
-        Piece blue_rock2;
+        // Rooks
+        Piece red_rook1;
+        Piece red_rook2;
+        Piece blue_rook1;
+        Piece blue_rook2;
 
         // Pawn
         Piece red_pawn1;
@@ -199,22 +243,22 @@ void Grid::setPieces() {
     this->red_knight2.setColor("Red");
     this->red_knight2.setId(2);
 
-    // set rocks
-    this->blue_rock1.setName("B Rock");
-    this->blue_rock1.setColor("Blue");
-    this->blue_rock1.setId(1);
+    // set rooks
+    this->blue_rook1.setName("B Rook");
+    this->blue_rook1.setColor("Blue");
+    this->blue_rook1.setId(1);
 
-    this->blue_rock2.setName("B Rock");
-    this->blue_rock2.setColor("Blue");
-    this->blue_rock2.setId(2);
+    this->blue_rook2.setName("B Rook");
+    this->blue_rook2.setColor("Blue");
+    this->blue_rook2.setId(2);
 
-    this->red_rock1.setName("R Rock");
-    this->red_rock1.setColor("Red");
-    this->red_rock1.setId(1);
+    this->red_rook1.setName("R Rook");
+    this->red_rook1.setColor("Red");
+    this->red_rook1.setId(1);
 
-    this->red_rock2.setName("R Rock");
-    this->red_rock2.setColor("Red");
-    this->red_rock2.setId(2);
+    this->red_rook2.setName("R Rook");
+    this->red_rook2.setColor("Red");
+    this->red_rook2.setId(2);
 
     // set queens
     this->blue_queen.setName("B Queen");
@@ -302,14 +346,14 @@ void Grid::setPieces() {
 
 void Grid::placePieces() {
     // palce red pieces
-    this->pieces["A1"] = this->red_rock1;
+    this->pieces["A1"] = this->red_rook1;
     this->pieces["B1"] = this->red_knight1;
     this->pieces["C1"] = this->red_bishop1;
     this->pieces["D1"] = this->red_queen;
     this->pieces["E1"] = this->red_king;
     this->pieces["F1"] = this->red_bishop2;
     this->pieces["G1"] = this->red_knight2;
-    this->pieces["H1"] = this->red_rock2;
+    this->pieces["H1"] = this->red_rook2;
     this->pieces["A2"] = this->red_pawn1;
     this->pieces["B2"] = this->red_pawn2;
     this->pieces["C2"] = this->red_pawn3;
@@ -320,14 +364,14 @@ void Grid::placePieces() {
     this->pieces["H2"] = this->red_pawn8;
 
     // place blue pieces
-    this->pieces["A8"] = this->blue_rock1;
+    this->pieces["A8"] = this->blue_rook1;
     this->pieces["B8"] = this->blue_knight1;
     this->pieces["C8"] = this->blue_bishop1;
     this->pieces["D8"] = this->blue_queen;
     this->pieces["E8"] = this->blue_king;
     this->pieces["F8"] = this->blue_bishop2;
     this->pieces["G8"] = this->blue_knight2;
-    this->pieces["H8"] = this->blue_rock2;
+    this->pieces["H8"] = this->blue_rook2;
     this->pieces["A7"] = this->blue_pawn1;
     this->pieces["B7"] = this->blue_pawn2;
     this->pieces["C7"] = this->blue_pawn3;
@@ -346,4 +390,9 @@ void Grid::setPositions() {
             positions[key] = vecLetters[j] + std::to_string(i + 1);
         }
     } 
+}
+
+void Grid::play() {
+
+    this->getMoveInput();
 }

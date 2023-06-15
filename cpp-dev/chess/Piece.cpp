@@ -58,6 +58,7 @@ private:
     std::string color;
     std::string player_id;
     std::string position;
+    int numberOfMoves;
 };
 
 #endif
